@@ -169,4 +169,37 @@ BEGIN
 	END IF;
 END $$
 
+CREATE PROCEDURE Captures_restringir_tipus (n int, m varchar(30))
+BEGIN
+	DECLARE t int;
+	SET t = (SELECT tipus FROM Zones z WHERE n = z.num_zona AND m = z.nom_massa);
+	IF (t NOT IN (1, 2)) THEN
+		SIGNAL SQLSTATE '45000' SET message_text = 'Tipus de zona incorrecte';
+	END IF;
+END $$
+
+CREATE TRIGGER Captures_restringir_tipus_insert
+BEFORE INSERT ON Captures
+FOR EACH ROW
+BEGIN
+	CALL Captures_restringir_tipus(NEW.num_zona, NEW.nom_massa);
+END $$
+
+CREATE TRIGGER Captures_restringir_tipus_update
+BEFORE UPDATE ON Captures
+FOR EACH ROW
+BEGIN
+	CALL Captures_restringir_tipus(NEW.num_zona, NEW.nom_massa);
+END $$
+
+CREATE TRIGGER Captures_restringir_tipus_update_zona
+BEFORE UPDATE ON Zones
+FOR EACH ROW
+BEGIN
+	IF EXISTS (SELECT * FROM Captures WHERE num_zona = OLD.num_zona AND nom_massa = OLD.nom_massa) AND
+	NEW.tipus NOT IN (1, 2) THEN
+		SIGNAL SQLSTATE '45000' SET message_text = 'Relacio Captures no admet aquest tipus de zona';
+	END IF;
+END $$
+
 DELIMITER ;
