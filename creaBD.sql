@@ -98,9 +98,9 @@ CREATE TABLE Permisos (
 	num_max int UNSIGNED,
 
 	CONSTRAINT pk_permisos PRIMARY KEY (num_zona, nom_massa, data_vigencia),
-	CONSTRAINT fk_permisos_zones FOREIGN KEY (num_zona, nom_massa) REFERENCES Zones(num_zona, nom_massa)
+	CONSTRAINT fk_permisos_zones FOREIGN KEY (num_zona, nom_massa) REFERENCES Zones(num_zona, nom_massa),
+	CONSTRAINT permisos_max_limit CHECK (num_max <= 50)
 ) ENGINE=InnoDB;
--- El numero maxim de permisos a aotrgar en qualsevol data i zona no pot superar les 50 unitats.
 -- A la interrelacio permisos nomes intervenen zones de tipus sense mort, normal i esportives
 
 CREATE TABLE Captures (
