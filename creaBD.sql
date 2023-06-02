@@ -131,3 +131,20 @@ CREATE TABLE Multes (
 	CONSTRAINT fk_multes_pescadors FOREIGN KEY (infractor) REFERENCES Pescadors(dni),
 	CONSTRAINT fk_multes_zones FOREIGN KEY (num_zona, nom_massa) REFERENCES Zones(num_zona, nom_massa)
 ) ENGINE=InnoDB;
+
+-- Triggers
+
+DELIMITER $$
+
+CREATE TRIGGER Permisos_restringir_tipus
+BEFORE INSERT ON Permisos
+FOR EACH ROW
+BEGIN
+	DECLARE t int;
+	SET t = (SELECT tipus FROM Zones z WHERE NEW.num_zona = z.num_zona AND NEW.nom_massa = z.nom_massa);
+	IF (t NOT IN (1, 2, 3)) THEN
+		SIGNAL SQLSTATE '45000' SET message_text = 'Tipus de zona incorrecte';
+	END IF;
+END $$
+
+DELIMITER ;
