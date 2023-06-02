@@ -136,14 +136,36 @@ CREATE TABLE Multes (
 
 DELIMITER $$
 
-CREATE TRIGGER Permisos_restringir_tipus
+CREATE PROCEDURE Permisos_restringir_tipus (n int, m varchar(30))
+BEGIN
+	DECLARE t int;
+	SET t = (SELECT tipus FROM Zones z WHERE n = z.num_zona AND m = z.nom_massa);
+	IF (t NOT IN (1, 2, 3)) THEN
+		SIGNAL SQLSTATE '45000' SET message_text = 'Tipus de zona incorrecte';
+	END IF;
+END $$
+
+CREATE TRIGGER Permisos_restringir_tipus_insert
 BEFORE INSERT ON Permisos
 FOR EACH ROW
 BEGIN
-	DECLARE t int;
-	SET t = (SELECT tipus FROM Zones z WHERE NEW.num_zona = z.num_zona AND NEW.nom_massa = z.nom_massa);
-	IF (t NOT IN (1, 2, 3)) THEN
-		SIGNAL SQLSTATE '45000' SET message_text = 'Tipus de zona incorrecte';
+	CALL Permisos_restringir_tipus(NEW.num_zona, NEW.nom_massa);
+END $$
+
+CREATE TRIGGER Permisos_restringir_tipus_update
+BEFORE UPDATE ON Permisos
+FOR EACH ROW
+BEGIN
+	CALL Permisos_restringir_tipus(NEW.num_zona, NEW.nom_massa);
+END $$
+
+CREATE TRIGGER Permisos_restringir_tipus_update_zona
+BEFORE UPDATE ON Zones
+FOR EACH ROW
+BEGIN
+	IF EXISTS (SELECT * FROM Permisos WHERE num_zona = OLD.num_zona AND nom_massa = OLD.nom_massa) AND
+	NEW.tipus NOT IN (1, 2, 3) THEN
+		SIGNAL SQLSTATE '45000' SET message_text = 'Relacio Permisos no admet aquest tipus de zona';
 	END IF;
 END $$
 
