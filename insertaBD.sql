@@ -1,16 +1,21 @@
 -- Entitats
 
--- Atributs: num_zona, nom_massa, municipi, limit superior, limit inferior
-INSERT INTO Zones VALUES (1, 'Ebre', 'Tudela', NULL, NULL);
-INSERT INTO Zones VALUES (2, 'Ebre', 'Tudela', NULL, NULL);
-INSERT INTO Zones VALUES (3, 'Ebre', 'Tudela', NULL, NULL);
-INSERT INTO Zones VALUES (4, 'Ebre', 'Tudela', NULL, NULL);
-INSERT INTO Zones VALUES (5, 'Ebre', 'Tudela', NULL, NULL);
-INSERT INTO Zones VALUES (1, 'Ara',  'Broto',  NULL, NULL);
-INSERT INTO Zones VALUES (2, 'Ara',  'Broto',  NULL, NULL);
-INSERT INTO Zones VALUES (3, 'Ara',  'Broto',  NULL, NULL);
-INSERT INTO Zones VALUES (4, 'Ara',  'Broto',  NULL, NULL);
-INSERT INTO Zones VALUES (5, 'Ara',  'Broto',  NULL, NULL);
+-- Atributs: codi_tipus, desc_tipus
+INSERT INTO Tipus_zona VALUES (1, 'Normal'    );
+INSERT INTO Tipus_zona VALUES (2, 'Esportiva' );
+INSERT INTO Tipus_zona VALUES (3, 'Sense mort');
+
+-- Atributs: num_zona, nom_massa, municipi, tipus, limit superior, limit inferior
+INSERT INTO Zones VALUES (1, 'Ebre', 'Tudela', 1, NULL, NULL);
+INSERT INTO Zones VALUES (2, 'Ebre', 'Tudela', 1, NULL, NULL);
+INSERT INTO Zones VALUES (3, 'Ebre', 'Tudela', 1, NULL, NULL);
+INSERT INTO Zones VALUES (4, 'Ebre', 'Tudela', 1, NULL, NULL);
+INSERT INTO Zones VALUES (5, 'Ebre', 'Tudela', 1, NULL, NULL);
+INSERT INTO Zones VALUES (1, 'Ara',  'Broto',  1, NULL, NULL);
+INSERT INTO Zones VALUES (2, 'Ara',  'Broto',  1, NULL, NULL);
+INSERT INTO Zones VALUES (3, 'Ara',  'Broto',  1, NULL, NULL);
+INSERT INTO Zones VALUES (4, 'Ara',  'Broto',  1, NULL, NULL);
+INSERT INTO Zones VALUES (5, 'Ara',  'Broto',  1, NULL, NULL);
 
 -- Atributs: nom_popular, nom_cientific, long_mitja
 INSERT INTO Especies VALUES ('Siluro',      'Silurus glanis',         100.00);
@@ -39,10 +44,10 @@ INSERT INTO Funcionaris VALUES ('56781234S', '444444444', 1400);
 INSERT INTO Funcionaris VALUES ('81234567Z', '555555555', 1400);
 
 -- Atributs: dni, carrer, ciutat, comunitat
-INSERT INTO Pescadors VALUES ('23456781R', 'Calle Alza',         'Tudela',    'Aragon');
-INSERT INTO Pescadors VALUES ('45678123M', 'Calle Sorrosal',     'Broto',     'Aragon');
-INSERT INTO Pescadors VALUES ('56781234S', 'Calle de Casanova', 'Barcelona', 'Catalunya');
-INSERT INTO Pescadors VALUES ('67812345V', 'Calle de Borja',     'Zaragoza',  'Aragon');
+INSERT INTO Pescadors VALUES ('23456781R', 'Calle Alza',         'Tudela',    'Aragon'   );
+INSERT INTO Pescadors VALUES ('45678123M', 'Calle Sorrosal',     'Broto',     'Aragon'   );
+INSERT INTO Pescadors VALUES ('56781234S', 'Calle de Casanova',  'Barcelona', 'Catalunya');
+INSERT INTO Pescadors VALUES ('67812345V', 'Calle de Borja',     'Zaragoza',  'Aragon'   );
 INSERT INTO Pescadors VALUES ('78123456Y', 'Avenida de Andorra', 'Tarragona', 'Catalunya');
 
 -- Interrelacions

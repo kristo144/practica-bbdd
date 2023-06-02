@@ -8,14 +8,23 @@ USE PermisosBD;
 
 -- Entitats
 
+CREATE TABLE Tipus_zona (
+	codi_tipus INT UNSIGNED AUTO_INCREMENT,
+	desc_tipus varchar(20),
+
+	CONSTRAINT pk_tipus_zona PRIMARY KEY (codi_tipus)
+) ENGINE=InnoDB;
+
 CREATE TABLE Zones (
 	num_zona INT UNSIGNED,
 	nom_massa varchar(30),
 	municipi varchar(30),
+	tipus int unsigned,
 	limit_superior varchar(30),
 	limit_inferior varchar(30),
 
-	CONSTRAINT pk_zones PRIMARY KEY (num_zona, nom_massa)
+	CONSTRAINT pk_zones PRIMARY KEY (num_zona, nom_massa),
+	CONSTRAINT fk_zones_tipus FOREIGN KEY (tipus) REFERENCES Tipus_zona(codi_tipus)
 ) ENGINE=InnoDB;
 -- Restriccio zones han de ser contigues comencant per 1
 -- No es crea taula Masses d'aigua, tal i com indica l'enunciat

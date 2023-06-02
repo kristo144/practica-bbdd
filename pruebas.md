@@ -29,8 +29,8 @@ Casos:
 
 Resultats:
 
-- 2, Ara, Broto
-- 4, Ebre, Tudela
+- 2, Ara, Broto, Normal
+- 4, Ebre, Tudela, Normal
 
 ## Apartat 3e
 
