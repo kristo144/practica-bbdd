@@ -202,4 +202,31 @@ BEGIN
 	END IF;
 END $$
 
+CREATE TRIGGER Captures_restringir_longitud_insert
+BEFORE INSERT ON Captures
+FOR EACH ROW
+BEGIN
+	IF NEW.long_min > (SELECT long_mitja FROM Especies WHERE nom_popular = NEW.nom_especie) THEN
+		SIGNAL SQLSTATE '45000' SET message_text = 'Longitud minima no pot ser superior a la mitjana.';
+	END IF;
+END $$
+
+CREATE TRIGGER Captures_restringir_longitud_update
+BEFORE UPDATE ON Captures
+FOR EACH ROW
+BEGIN
+	IF NEW.long_min > (SELECT long_mitja FROM Especies WHERE nom_popular = NEW.nom_especie) THEN
+		SIGNAL SQLSTATE '45000' SET message_text = 'Longitud minima no pot ser superior a la mitjana.';
+	END IF;
+END $$
+
+CREATE TRIGGER Captures_restringir_longitud_update_especie
+BEFORE UPDATE ON Especies
+FOR EACH ROW
+BEGIN
+	IF NEW.long_mitja < ANY (SELECT long_min FROM Captures WHERE nom_especie = NEW.nom_popular) THEN
+		SIGNAL SQLSTATE '45000' SET message_text = 'Longitud minima no pot ser superior a la mitjana.';
+	END IF;
+END $$
+
 DELIMITER ;
