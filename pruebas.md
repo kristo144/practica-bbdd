@@ -1,18 +1,20 @@
 ## Apartat 3a
 
-Consulta: Funcionaris que no son pescadors i no han posat cap multa
+Consulta: Funcionaris que no son pescadors i no han posat cap multa a pescadors de Catalunya
 
 Casos:
 
-- Funcionari que no és pescador i no ha posat multa (12345678L, 56781234S)
+- Funcionari que no és pescador i no ha posat multa (12345678L)
 - Funcionari que sí és pescador i no ha posat multa (23456781R)
-- Funcionari que no és pescador i sí ha posat multa (34567812Q)
-- Funcionari que sí és pescador i sí ha posat multa (45678123M)
+- Funcionari que no és pescador i sí ha posat multa, però no a pescadors de Catalunya (34567812Q)
+- Funcionari que no és pescador i sí ha posat multa a pescadors de Catalunya (81234567Z)
+- Funcionari que sí és pescador i sí ha posat multa, però no a pescadors de Catalunya (56781234S)
+- Funcionari que sí és pescador i sí ha posat multa a pescadors de Catalunya (45678123M)
 
 Resultats:
 
 - 000000000, Pepito, 1500
-- 444444444, Zaid, 1400
+- 222222222, Mario, 1600
 
 ## Apartat 3c
 

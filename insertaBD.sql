@@ -27,6 +27,8 @@ INSERT INTO Persones VALUES ('34567812Q', 'Mario'  );
 INSERT INTO Persones VALUES ('45678123M', 'Daniela');
 INSERT INTO Persones VALUES ('56781234S', 'Zaid'   );
 INSERT INTO Persones VALUES ('67812345V', 'Roberto');
+INSERT INTO Persones VALUES ('78123456Y', 'Miguel' );
+INSERT INTO Persones VALUES ('81234567Z', 'Anabel' );
 
 -- Atributs: dni, nss, sou
 INSERT INTO Funcionaris VALUES ('12345678L', '000000000', 1500);
@@ -34,11 +36,14 @@ INSERT INTO Funcionaris VALUES ('23456781R', '111111111', 1400);
 INSERT INTO Funcionaris VALUES ('34567812Q', '222222222', 1600);
 INSERT INTO Funcionaris VALUES ('45678123M', '333333333', 1400);
 INSERT INTO Funcionaris VALUES ('56781234S', '444444444', 1400);
+INSERT INTO Funcionaris VALUES ('81234567Z', '555555555', 1400);
 
 -- Atributs: dni, carrer, ciutat, comunitat
-INSERT INTO Pescadors VALUES ('23456781R', 'Calle Alza',     'Tudela',   'Aragon');
-INSERT INTO Pescadors VALUES ('45678123M', 'Calle Sorrosal', 'Broto',    'Aragon');
-INSERT INTO Pescadors VALUES ('67812345V', 'Calle de Borja', 'Zaragoza', 'Aragon');
+INSERT INTO Pescadors VALUES ('23456781R', 'Calle Alza',         'Tudela',    'Aragon');
+INSERT INTO Pescadors VALUES ('45678123M', 'Calle Sorrosal',     'Broto',     'Aragon');
+INSERT INTO Pescadors VALUES ('56781234S', 'Calle de Casanova', 'Barcelona', 'Catalunya');
+INSERT INTO Pescadors VALUES ('67812345V', 'Calle de Borja',     'Zaragoza',  'Aragon');
+INSERT INTO Pescadors VALUES ('78123456Y', 'Avenida de Andorra', 'Tarragona', 'Catalunya');
 
 -- Interrelacions
 
@@ -97,5 +102,7 @@ INSERT INTO Captures VALUES (5, 'Ebre', 'Carpa',  100, 35.00);
 
 -- Atributs: funcionari, infractor, data_multa, num_zona, nom_massa, motiu, import
 INSERT INTO Multes VALUES ('34567812Q', '23456781R', '2022-10-11', 1, 'Ebre', NULL, 100);
-INSERT INTO Multes VALUES ('45678123M', '23456781R', '2022-10-12', 2, 'Ara' , NULL, 100);
+INSERT INTO Multes VALUES ('56781234S', '23456781R', '2022-10-11', 1, 'Ebre', NULL, 100);
+INSERT INTO Multes VALUES ('45678123M', '78123456Y', '2022-10-12', 2, 'Ara' , NULL, 100);
+INSERT INTO Multes VALUES ('81234567Z', '78123456Y', '2022-10-12', 2, 'Ara' , NULL, 100);
 
