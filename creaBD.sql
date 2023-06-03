@@ -48,7 +48,7 @@ CREATE TABLE Persones (
 CREATE TABLE Funcionaris (
 	dni char(9),
 	nss char(12) NOT NULL,
-	sou int UNSIGNED, -- Guardem el sou en centims.
+	sou float(8,2),
 
 	CONSTRAINT pk_funcionaris PRIMARY KEY (dni),
 	CONSTRAINT fk_funcionaris_persones FOREIGN KEY (dni) REFERENCES Persones(dni),
