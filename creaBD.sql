@@ -26,7 +26,6 @@ CREATE TABLE Zones (
 	CONSTRAINT pk_zones PRIMARY KEY (num_zona, nom_massa),
 	CONSTRAINT fk_zones_tipus FOREIGN KEY (tipus) REFERENCES Tipus_zona(codi_tipus)
 ) ENGINE=InnoDB;
--- Restriccio zones han de ser contigues comencant per 1
 -- No es crea taula Masses d'aigua, tal i com indica l'enunciat
 
 CREATE TABLE Especies (
@@ -40,7 +39,7 @@ CREATE TABLE Especies (
 
 CREATE TABLE Persones (
 	dni char(9),
-	nom varchar(20), -- Longitud escollida de forma arbitraria
+	nom varchar(20),
 
 	CONSTRAINT pk_persones PRIMARY KEY (dni)
 ) ENGINE=InnoDB;
@@ -57,14 +56,13 @@ CREATE TABLE Funcionaris (
 
 CREATE TABLE Pescadors (
 	dni char(9),
-	carrer varchar(30), -- Longituds escollides de forma arbitraria
+	carrer varchar(30),
 	ciutat varchar(20),
 	comunitat varchar(20),
 
 	CONSTRAINT pk_pescadors PRIMARY KEY (dni),
 	CONSTRAINT fk_pescadors_persones FOREIGN KEY (dni) REFERENCES Persones(dni)
 ) ENGINE=InnoDB;
--- Afegir restriccio pesc/func subclasses total
 
 -- Interrelacions
 
@@ -72,7 +70,7 @@ CREATE TABLE Habitats (
 	massa_aigua varchar(30),
 	num_zona INT UNSIGNED,
 	nom_especie varchar(30),
-	index_poblacio INT, -- verificar tipo
+	index_poblacio INT,
 
 	CONSTRAINT pk_habitats PRIMARY KEY (massa_aigua, num_zona, nom_especie),
 	CONSTRAINT fk_habitats_zones FOREIGN KEY (num_zona, massa_aigua) REFERENCES Zones(num_zona, nom_massa),
@@ -101,7 +99,7 @@ CREATE TABLE Permisos (
 	CONSTRAINT fk_permisos_zones FOREIGN KEY (num_zona, nom_massa) REFERENCES Zones(num_zona, nom_massa),
 	CONSTRAINT permisos_max_limit CHECK (num_max <= 50)
 ) ENGINE=InnoDB;
--- A la interrelacio permisos nomes intervenen zones de tipus sense mort, normal i esportives
+
 
 CREATE TABLE Captures (
 	num_zona int UNSIGNED,
@@ -114,8 +112,6 @@ CREATE TABLE Captures (
 	CONSTRAINT fk_captures_zones FOREIGN KEY (num_zona, nom_massa) REFERENCES Zones(num_zona, nom_massa),
 	CONSTRAINT fk_captures_especies FOREIGN KEY (nom_especie) REFERENCES Especies(nom_popular)
 ) ENGINE=InnoDB;
--- Garantir que no existeixen captures permeses amb longitud minima per sobre de la longitud mitja de lespecie en estat adult
--- A la interrelacio captures nomes intervenen zones de tipus normal i esportives
 
 CREATE TABLE Multes (
 	funcionari char(9),
